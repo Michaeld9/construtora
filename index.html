@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Basalto Construtora e Interiores</title>
+    <meta name="description" content="Basalto: incorporação e construção de edifícios residenciais em São Paulo, com divisão própria de arquitetura de interiores." />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1515263487990-61b07816b324?w=1400&q=80&auto=format&fit=crop" />
+    <script>
+      // Aplica o tema antes do primeiro paint para evitar flash.
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem("basalto-theme"); } catch (e) {}
+        var dark = t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.classList.add("dark");
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

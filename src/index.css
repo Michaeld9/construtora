@@ -1,0 +1,122 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Tokens Basalto
+  Paleta "Forest": concreto frio + verde profundo como único acento.
+  Raios: superfícies (imagens, cards, painéis) = 18px; elementos interativos (botões, abas, chips) = pill.
+*/
+:root {
+  --bg: #f1f2ef;
+  --surface: #e6e9e3;
+  --surface-2: #dbdfd8;
+  --ink: #121614;
+  --muted: #4b544f;
+  --line: rgb(18 22 20 / 0.12);
+  --accent: #2f5d46;
+  --accent-hover: #264d3a;
+  --accent-ink: #eef2ed;
+  --accent-soft: #d3e0d7;
+  --scrim: rgb(10 14 12 / 0.62);
+  --shadow: 0 30px 60px -30px rgb(30 50 40 / 0.35);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0e1110;
+  --surface: #161a18;
+  --surface-2: #1e2421;
+  --ink: #e8ece8;
+  --muted: #a2aca6;
+  --line: rgb(232 236 232 / 0.12);
+  --accent: #8cc4a6;
+  --accent-hover: #a3d3b9;
+  --accent-ink: #0c1812;
+  --accent-soft: #1c2e25;
+  --scrim: rgb(4 6 5 / 0.66);
+  --shadow: 0 30px 60px -30px rgb(0 0 0 / 0.7);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-scrim: var(--scrim);
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.4s var(--ease-out-expo), color 0.4s var(--ease-out-expo);
+}
+
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Shimmer para imagens ainda carregando */
+.img-skeleton {
+  background: linear-gradient(100deg, var(--surface) 30%, var(--surface-2) 50%, var(--surface) 70%);
+  background-size: 300% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+@keyframes shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: -200% 0; }
+}
+
+/* Marquee (usado uma única vez, na página de Interiores) */
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track,
+  .img-skeleton { animation: none; }
+}
